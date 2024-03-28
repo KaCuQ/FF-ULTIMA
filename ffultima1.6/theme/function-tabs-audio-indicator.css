@@ -1,0 +1,16 @@
+/* Always show audio indicator */
+
+.tab-icon-overlay:is([soundplaying]) {
+  opacity: 1 !important;
+  transform: translate(-7px, 7px);
+  background-color: var(--uc-ultima-background-i);
+}
+
+.tabbrowser-tab:hover .tab-icon-image {
+  opacity: 1 !important;
+}
+
+/* Optional - Change indicator color for muted audio */
+.tabbrowser-tab .tab-icon-overlay[muted] {
+  fill: #df5c5c !important;
+}
