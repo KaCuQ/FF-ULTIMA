@@ -1,9 +1,9 @@
 /* Always show audio indicator */
 
-.tab-icon-overlay:is([soundplaying]) {
-  opacity: 1 !important;
-  transform: translate(-7px, 7px);
-  background-color: var(--uc-ultima-background-i);
+.tab-icon-overlay:is([soundplaying]), .tab-icon-overlay:is([muted])  {
+	opacity: 1 !important;
+	transform: translate(-7px, 7px);
+	background-color: var(--uc-ultima-background-i);
 }
 
 .tabbrowser-tab:hover .tab-icon-image {
