@@ -14,14 +14,13 @@ Tabs Size: (XS = 40px) (S = 140px) (L = 250px)
 
 /*----------------------------------------------------------------------*/
 
-
 /*---------------------(Optional) autohide tabs-------------------------*/
 
 /*--tabs overlay content--*/
-/*@import url(theme/function-tabs-autohide-i.css);*/ 
+@import url(theme/function-tabs-autohide-i.css);
 
 /*--tabs push content to the side--*/
-/*@import url(theme/function-tabs-autohide-ii.css);*/ 
+/* @import url(theme/function-tabs-autohide-ii.css);  */
 
 /*----------------------------------------------------------------------*/
 
@@ -47,3 +46,42 @@ Tabs Size: (XS = 40px) (S = 140px) (L = 250px)
 @import url(theme/theme-tab-audio-indicator.css);
 
 @import url(theme/override-linux.css);
+
+/* Tests */
+
+/* Top level tabs bar */
+#TabsToolbar-customization-target {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bar with only tabs */
+#tabbrowser-tabs {
+  position: relative !important;
+  display: flex;
+  top: unset;
+  left: unset;
+  margin: 0 !important;
+  bottom: unset;
+  right: unset;
+  height: 837px !important;
+}
+
+/* One level below */
+#tabbrowser-arrowscrollbox {
+  position: relative;
+}
+
+/* Additional buttons on bottom */
+#preferences-button {
+  position: relative;
+  top: auto;
+  left: auto;
+}
+
+/* toolbarbutton-1 */
+toolbarbutton-1 {
+  top: auto;
+  left: auto;
+  position: relative;
+}

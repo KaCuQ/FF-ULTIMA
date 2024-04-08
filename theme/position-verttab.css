@@ -23,16 +23,19 @@
 /*--set position of container--*/
 
 :root:not([customizing]) #tabbrowser-tabs {
-  position: fixed !important;
-  height: var(--uc-tabbar-height) !important;
+  position: relative !important;
+  /* height: var(--uc-tabbar-height) !important; */
+  height: 300px !important;
   width: var(--uc-vertical-tabs-width);
-  left: 0px;
+  /* left: 0px; */
   contain: size !important;
   overflow: hidden !important;
+  order: 0;
 
   border-radius: var(--uc-all-border-radius);
   border-inline-start: 0 !important;
-  margin: var(--uc-tab-margins) !important;
+  /* margin: var(--uc-tab-margins) !important; */
+  margin: 0 !important;
   padding-inline: 0 !important;
 }
 
@@ -396,3 +399,35 @@ height: var(--uc-tabbar-height-adjust) !important;}
 }
 
 /*-----------------------------------END OF ADJUSTMENTS-------------------------------------*/
+
+/* Source code for shadow inspired by */
+/* https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/ */
+
+scrollbox {
+  background:
+  /* Shadow Cover TOP */ linear-gradient(
+        white 30%,
+        rgba(255, 255, 255, 0)
+      )
+      center top,
+    /* Shadow Cover BOTTOM */ linear-gradient(rgba(255, 255, 255, 0), white 70%)
+      center bottom,
+    /* Shadow TOP */
+      radial-gradient(
+        farthest-side at 50% 0,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      center top,
+    /* Shadow BOTTOM */
+      radial-gradient(
+        farthest-side at 50% 100%,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0)
+      )
+      center bottom;
+
+  background-repeat: no-repeat;
+  background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+  background-attachment: local, local, scroll, scroll;
+}
