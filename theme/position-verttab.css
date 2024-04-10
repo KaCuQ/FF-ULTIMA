@@ -396,7 +396,7 @@ height: var(--uc-tabbar-height-adjust) !important;}
 /* Source code for shadow inspired by */
 /* https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/ */
 
-scrollbox {
+.scrollbox-clip scrollbox[smoothscroll="true"] {
   background:
     /* Shadow Cover TOP */
     /* TODO: Need to be changed to variable */
@@ -404,7 +404,7 @@ scrollbox {
       rgba(255, 255, 255, 0)) center top,
     /* Shadow Cover BOTTOM */
     linear-gradient(#23232A,
-    #23232A 70%) center bottom,
+      #23232A 70%) center bottom,
     /* Shadow TOP */
     /* TODO: Change to variable indicating scrollable area */
     radial-gradient(farthest-side at 50% 0,
