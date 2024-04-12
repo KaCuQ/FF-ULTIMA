@@ -32,7 +32,7 @@
   overflow: hidden !important;
   order: 0;
 
-  border-radius: var(--uc-all-border-radius);
+  /* border-radius: var(--uc-all-border-radius); */
   border-inline-start: 0 !important;
   /* margin: var(--uc-tab-margins) !important; */
   margin: 0 !important;
@@ -136,11 +136,48 @@ height: var(--uc-tabbar-height-adjust) !important;}
 
 /*--i will kill you...--*/
 
+/* TODO: Temporary positions, would need to be moved to separate places */
+/* Positon pinned tabs on top of other tabs */
+.tabbrowser-tab[pinned] {
+  z-index: 3;
+}
+
+/* Displace position of vertical tabs when there are pinned tabs */
+#tabbrowser-tabs:has(.tabbrowser-tab[pinned]:nth-of-type(1)) {
+  --tab-height: 40px;
+}
+
+#tabbrowser-tabs:has(.tabbrowser-tab[pinned]:nth-of-type(2)) {
+  --tab-height: 80px;
+}
+
+.tabbrowser-tab[pinned]:nth-of-type(2) {
+  top: calc(var(--tab-height) - 40px) !important;
+}
+
+/* Make current tab sticky */
+.tabbrowser-tab[selected] {
+  position: sticky !important;
+  top: var(--tab-height);
+  bottom: 0;
+}
+
+.tabbrowser-tab {
+  overflow: hidden !important;
+}
+
+#tabbrowser-tabs {
+  /* padding-top: var(--tab-height) !important; */
+}
+
+
 /*--pinned position, ignore above :)--*/
 
 .tabbrowser-tab:is([pinned]),
 #tabbrowser-tabs[positionpinnedtabs]>#tabbrowser-arrowscrollbox>.tabbrowser-tab[pinned] {
-  position: initial !important;
+  /* position: initial !important; */
+  position: sticky !important;
+  top: 0 !important;
   flex-shrink: initial !important;
   margin-left: initial !important;
   margin: 0 !important;
@@ -232,15 +269,21 @@ height: var(--uc-tabbar-height-adjust) !important;}
   height: 16px !important;
   width: 16px !important;
   border-radius: var(--uc-button-border) !important;
-  display: none !important;
+  /* display: none !important; */
   /*--removable--*/
 }
 
 #tabbrowser-tabs .close-icon {
   padding: 2px !important;
   border-radius: var(--uc-button-border) !important;
-  display: none !important;
+  /* display: none !important; */
   /*--removable--*/
+  opacity: 0;
+  transition: opacity 200ms;
+}
+
+.tabbrowser-tab:hover .close-icon {
+  opacity: 1 !important;
 }
 
 .tab-throbber,
@@ -397,23 +440,30 @@ height: var(--uc-tabbar-height-adjust) !important;}
 /* https://css-tricks.com/books/greatest-css-tricks/scroll-shadows/ */
 
 .scrollbox-clip scrollbox[smoothscroll="true"] {
+  /* Adding transparency to accent color */
+  --accent-color-with-transparency: color-mix(in srgb, var(--uc-ultima-accent-i) 20%, transparent);
+
   background:
     /* Shadow Cover TOP */
-    /* TODO: Need to be changed to variable */
-    linear-gradient(#23232A 30%,
-      rgba(255, 255, 255, 0)) center top,
+    linear-gradient(var(--uc-ultima-background-iv) 30%,
+      transparent) center var(--tab-height),
     /* Shadow Cover BOTTOM */
-    linear-gradient(#23232A,
-      #23232A 70%) center bottom,
+    linear-gradient(transparent,
+      var(--uc-ultima-background-iv) 70%) center bottom,
     /* Shadow TOP */
-    /* TODO: Change to variable indicating scrollable area */
-    radial-gradient(farthest-side at 50% 0,
-      red,
-      rgba(0, 0, 0, 0)) center top,
+    linear-gradient(var(--accent-color-with-transparency) 30%,
+      transparent) center var(--tab-height),
     /* Shadow BOTTOM */
+    linear-gradient(transparent,
+      var(--accent-color-with-transparency) 70%) center bottom;
+
+  /* Old radial indicators */
+  /* radial-gradient(farthest-side at 50% 0,
+      red,
+      rgba(0, 0, 0, 0)) center 40px,
     radial-gradient(farthest-side at 50% 100%,
       red,
-      rgba(0, 0, 0, 0)) center bottom;
+      rgba(0, 0, 0, 0)) center bottom; */
 
   background-repeat: no-repeat;
   background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;

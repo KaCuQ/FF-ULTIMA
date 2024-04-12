@@ -176,7 +176,9 @@ body {background: var(--toolbar-bgcolor) !important;}
 /*-------------------tabs-------------------*/
 
 #main-window:not([lwtheme="true"]) #tabbrowser-tabs
-{background: var(--uc-tabs-background); box-shadow: 0.1rem 0.3rem 0.4rem -0.1rem rgba(25,25,25,0.8); --tab-loading-fill: var(--uc-ultima-accent-i) !important;}
+{
+  /* box-shadow: 0.1rem 0.3rem 0.4rem -0.1rem rgba(25,25,25,0.8); */
+  --tab-loading-fill: var(--uc-ultima-accent-i) !important;}
 
 /*--pinned--*/
 
@@ -325,8 +327,9 @@ color: var(--uc-light)  !important;
 
 /* when theme applied */
 
-:root:not([customizing]) #tabbrowser-tabs:-moz-lwtheme
-{background-color: var(--uc-tabs-lwt) !important;}
+:root:not([customizing]) #tabbrowser-tabs:-moz-lwtheme {
+  /* background-color: var(--uc-tabs-lwt) !important; */
+}
 
 /*--pinned themed-*/
 

@@ -26,11 +26,11 @@
 @media (prefers-color-scheme: dark) {
 
     #tabbrowser-arrowscrollbox {
-        background: var(--uc-ultima-background-iv) !important;
+        /* background: var(--uc-ultima-background-iv) !important; */
     }
 
     #main-window[lwtheme="true"] #tabbrowser-arrowscrollbox {
-        background: var(--uc-tabs-lwt) !important;
+        /* background: var(--uc-tabs-lwt) !important; */
     }
 
 }
@@ -38,11 +38,11 @@
 @media (prefers-color-scheme: light) {
 
     #tabbrowser-arrowscrollbox {
-        background: var(--uc-ultima-background-iv) !important;
+        /* background: var(--uc-ultima-background-iv) !important; */
     }
 
     #main-window[lwtheme="true"] #tabbrowser-arrowscrollbox {
-        background: var(--uc-tabs-lwt) !important;
+        /* background: var(--uc-tabs-lwt) !important; */
     }
 
 }

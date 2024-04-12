@@ -6,19 +6,52 @@
 
 #TabsToolbar-customization-target {
   position: fixed;
-  height: calc(100vh - 42px);
+  height: calc(100vh - 49px);
   top: 40px;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.4);
+  border-radius: var(--uc-all-border-radius);
+  /* background: rgba(0, 0, 0, 0.4); */
+  margin: var(--uc-tab-margins) !important;
+  background:  var(--uc-ultima-background-iv);
 }
 
-/* visual indicator, when on customize toolbar screen */
+/* Adding layer of space behind and around tab bar to fix hover targetting, as margins don't not trigger hover */
+#TabsToolbar-customization-target::before,
+#TabsToolbar-customization-target::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  height: 100%;
+}
+
+#TabsToolbar:not(customizing) #TabsToolbar-customization-target::before {
+  left: -6px;
+  width: calc(100% + 12px);
+  height: calc(100% + 6px);
+  background-color: var(--uc-ultima-window);
+
+  /* TODO: Change this later to conditional */
+  /* background: var(--lwt-additional-images);  */
+}
+
+#TabsToolbar-customization-target::after {
+  left: 0;
+  width: 100%;
+  border-radius: var(--uc-all-border-radius);
+  background-color: var(--uc-ultima-background-iv);
+}
+
+/* visual indicator, when customizing toolbar screen */
 #TabsToolbar:is([customizing="true"]) #TabsToolbar-customization-target {
-  background: var(--uc-ultima-background-iii) !important;
-  padding-right: 32px !important;
-  min-width: 135px;
-  top: 450px;
-  left: 30px;
+  /* background: var(--uc-ultima-background-iii) !important; */
+  padding-right: 0px !important;
+  padding-bottom: 30px;
+  min-width: 32px !important;
+  height: fit-content;
+  transition: height 200ms;
+  top: unset;
+  bottom: 50px;
+  left: 20px;
 }
 
 #TabsToolbar:is([customizing="true"]) #tabbrowser-tabs {
@@ -66,79 +99,65 @@
   left: 6px;
 } */
 
+/* Order Toolbar Buttons as they appear when customizing */
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(1) {
-  /* top: calc(100vh - 85px); */
   order: 1;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(4) {
-  /* top: calc(100vh - 122px); */
   order: 2;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(5) {
-  /* top: calc(100vh - 159px); */
   order: 3;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(6) {
-  /* top: calc(100vh - 196px); */
   order: 4;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(7) {
-  /* top: calc(100vh - 233px); */
   order: 5;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(8) {
-  /* top: calc(100vh - 270px); */
   order: 6;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(9) {
-  /* top: calc(100vh - 307px); */
   order: 7;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(10) {
-  /* top: calc(100vh - 344px); */
   order: 8;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(11) {
-  /* top: calc(100vh - 381px); */
   order: 9;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(12) {
-  /* top: calc(100vh - 418px); */
   order: 10;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(13) {
-  /* top: calc(100vh - 455px); */
   order: 11;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(14) {
-  /* top: calc(100vh - 492px); */
   order: 12;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(15) {
-  /* top: calc(100vh - 529px); */
   order: 13
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(16) {
-  /* top: calc(100vh - 566px); */
   order: 14;
 }
 #TabsToolbar:not([customizing="true"])
   .toolbarbutton-1[removable="true"]:nth-of-type(17) {
-  /* top: calc(100vh - 603px); */
   order: 15;
 }
 
@@ -175,9 +194,46 @@
   /* position: initial; */
   position: relative;
   display: flex;
-  background: rgba(255, 255, 255, 0.2);
+  /* background: rgba(255, 255, 255, 0.2); */
   z-index: 1;
   /* top: initial; */
+}
+
+/* Align icons to the left */
+#TabsToolbar:not([customizing="true"]) #TabsToolbar-customization-target > .toolbarbutton-1 {
+  justify-content: flex-start !important;
+  max-width: 41px;
+  transition: max-width 1000ms !important;
+  margin: 0 2px !important;
+  padding: 0 !important;
+}
+
+#TabsToolbar:not([customizing="true"]):hover #TabsToolbar-customization-target > .toolbarbutton-1 {
+  max-width: 100%;
+  transition: max-width 0ms !important;
+}
+
+#TabsToolbar:not([customizing="true"]) #TabsToolbar-customization-target > .toolbarbutton-1 > label.toolbarbutton-text {
+  display: block !important;
+  width: 0;
+  flex-grow: 0 !important;
+  flex-shrink: 0 !important;
+  max-width: 100% !important;
+  min-width: none !important;
+  padding-left: 5px !important;
+  padding-right: 0 !important;
+  text-align: start;
+}
+
+/* Show label on vertical tab hover */
+#TabsToolbar:not([customizing="true"]):hover #TabsToolbar-customization-target > .toolbarbutton-1 > label.toolbarbutton-text {
+  max-width: 100%;
+  padding-left: 5px !important;
+}
+
+#TabsToolbar:not([customizing="true"]) #TabsToolbar-customization-target > .toolbarbutton-1:hover {
+  background-color: var(--toolbarbutton-hover-background) !important;
+  border-radius: var(--tab-border-radius);
 }
 
 #titlebar {
